@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Box } from 'rebass'
+import { ThemeProvider } from 'emotion-theming'
+import { theme } from './styles/theme'
+import SearchBar from './components/SearchBar'
+import Results from './components/Results'
 
-function App() {
+const App = props => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <ThemeProvider theme={theme}>
+      <Box
+        sx={{minHeight: '100vh'}}
+        variant='styles.root'
+        bg={'dark'}
+      >
+        <Box
+         p={3}
+         mx={'auto'}
+         sx={{maxWidth: '1024px'}}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          <SearchBar/>
+          <Results/>
+        </Box>
+      </Box>
+    </ThemeProvider>
+  )
 }
 
 export default App;
