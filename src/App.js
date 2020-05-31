@@ -2,7 +2,6 @@ import React from 'react'
 import { Box } from 'rebass'
 import { ThemeProvider } from 'emotion-theming'
 import { theme } from './styles/theme'
-import SearchBar from './components/SearchBar'
 import Results from './components/Results'
 
 const App = props => {
@@ -18,7 +17,6 @@ const App = props => {
          mx={'auto'}
          sx={{maxWidth: '1024px'}}
         >
-          <SearchBar/>
           <Results/>
         </Box>
       </Box>
