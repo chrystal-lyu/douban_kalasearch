@@ -15,12 +15,17 @@ const Search = () => {
   const [errors, setErrors] = useState(false);
   const [results, setResults] = useState([]);
   const [query, setQuery] = useState('');
+  const [hits, setHits] = useState([]);
+  const [time, setTime] = useState([]);
 
   useEffect(() => {
     async function f() {
       try {
         let response = await client.search(`${query}`, indexId)
-        setResults(response.hits);
+        console.log(response)
+        setResults(response.hits)
+        setTime(response.queryTimeUsed)
+        setHits(response.totalHits)
       } catch(err) {
         setErrors(err.response)
       }
@@ -36,32 +41,43 @@ const Search = () => {
   } else {
     return (
       <Box>
-        <Heading
+        <Box
           sx={{
-            marginTop: 200,
-            marginBottom: 50,
             textAlign: 'center'
           }}
-          mx={'auto'}
-          color={'white'}
         >
-          You Search. We Deliver.
-        </Heading>
-        <Input
-          sx={{
-            outline: 'none',
-            marginBottom: 100,
-            maxWidth: 500
-          }}
-          id='search'
-          name='search'
-          type='text'
-          placeholder='Harry Potter'
-          bg={'white'}
-          mx={'auto'}
-          value={query}
-          onChange={event => setQuery(event.target.value)}
-        />
+          <Heading
+            sx={{
+              marginTop: 200,
+              marginBottom: 50,
+            }}
+            mx={'auto'}
+            color={'white'}
+          >
+            You Search. We Deliver.
+          </Heading>
+          <Input
+            sx={{
+              outline: 'none',
+              marginBottom: 50,
+              maxWidth: 500
+            }}
+            id='search'
+            name='search'
+            type='text'
+            placeholder='Harry Potter'
+            bg={'white'}
+            mx={'auto'}
+            value={query}
+            onChange={event => setQuery(event.target.value)}
+          />
+          <Text
+            sx={{
+              marginBottom: 50
+            }}
+            color={'white'}
+          >{hits} hits in {time}ms</Text>
+        </Box>
         <Flex flexWrap='wrap' mx={-2}>
           {results.map((movie, index) => {
             return (
