@@ -6,7 +6,7 @@ const MovieCard = (props) => {
     e.target.src = "https://img3.doubanio.com/f/movie/30c6263b6db26d055cbbe73fe653e29014142ea3/pics/movie/movie_default_large.png"
   }
   return (
-    <Box px={2} py={2} width={1/4}>
+    <Box px={2} py={2} width={[1/2, 1/2, 1/4]}>
       <Card
         bg={'white'}
         sx={{
@@ -20,7 +20,12 @@ const MovieCard = (props) => {
         />
         <Box px={1}>
           <Heading fontSize={2}>{props.name}</Heading>
-          <Text fontSize={0} my={1}>{props.actors}</Text>
+          <Text
+            fontSize={0}
+            my={1}
+          >
+            {props.actors}
+          </Text>
         </Box>
       </Card>
     </Box>

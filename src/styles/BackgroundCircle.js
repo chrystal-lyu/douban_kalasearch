@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box } from 'rebass'
-import Styled, { keyframes } from 'styled-components'
+import Styled from 'styled-components'
 
 const Circle = Styled.div`
   height: 25px;

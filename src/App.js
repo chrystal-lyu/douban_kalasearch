@@ -3,7 +3,7 @@ import { Box } from 'rebass'
 import { ThemeProvider } from 'emotion-theming'
 import { theme } from './styles/theme'
 import Search from './components/Search'
-import BackgroundCircle from './components/BackgroundCircle'
+import BackgroundCircle from './styles/BackgroundCircle'
 
 const App = props => {
   return (

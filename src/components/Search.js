@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Input } from '@rebass/forms'
-import { Flex, Text, Box } from 'rebass'
+import { Flex, Text, Box, Heading } from 'rebass'
 import { KalaSearch } from 'kalasearch-javascript-sdk'
 import MovieCard from './MovieCard'
 
@@ -35,30 +35,47 @@ const Search = () => {
     )
   } else {
     return (
-      <Flex flexWrap='wrap' mx={-2}>
+      <Box>
+        <Heading
+          sx={{
+            marginTop: 200,
+            marginBottom: 50,
+            textAlign: 'center'
+          }}
+          mx={'auto'}
+          color={'white'}
+        >
+          You Search. We Deliver.
+        </Heading>
         <Input
-          sx={{ outline: 'none' }}
+          sx={{
+            outline: 'none',
+            marginBottom: 100,
+            maxWidth: 500
+          }}
           id='search'
           name='search'
           type='text'
           placeholder='Harry Potter'
           bg={'white'}
-          mx={2}
-          mb={3}
+          mx={'auto'}
           value={query}
           onChange={event => setQuery(event.target.value)}
         />
-        {results.map((movie, index) => {
-          return (
-            <MovieCard
-              key={index}
-              name={movie._source.NAME}
-              cover={movie._source.COVER}
-              actors={movie._source.ACTORS}
-            />
-          )
-        })}
-      </Flex>
+        <Flex flexWrap='wrap' mx={-2}>
+          {results.map((movie, index) => {
+            return (
+              <MovieCard
+                key={index}
+                name={movie._source.NAME}
+                cover={movie._source.COVER}
+                actors={movie._source.ACTORS}
+              />
+            )
+          })}
+        </Flex>
+      </Box>
+      
     )
   }
 }
