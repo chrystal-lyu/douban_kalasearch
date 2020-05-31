@@ -2,6 +2,7 @@ import preset from '@rebass/preset'
 
 export const theme = {
   ...preset,
+  breakpoints: ['40em', '52em', '64em'],
   fontSizes: [
     12, 14, 16, 24, 32, 48, 64
   ],
@@ -9,7 +10,7 @@ export const theme = {
   colors: {
     primary: '#ea4c89',
     gray: '#f6f6ff',
-    dark: '#161E23',
+    dark: '#171F23',
     white: '#FFFFFF'
   },
   buttons: {
