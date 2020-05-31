@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Input } from '@rebass/forms'
-import { Flex, Text } from 'rebass'
+import { Flex, Text, Box } from 'rebass'
 import { KalaSearch } from 'kalasearch-javascript-sdk'
 import MovieCard from './MovieCard'
 
@@ -11,7 +11,7 @@ const client = new KalaSearch({
 
 const indexId = '5a84eb90-ec74-47d2-acb6-8fb6f6fc0878'
 
-const Results = () => {
+const Search = () => {
   const [errors, setErrors] = useState(false);
   const [results, setResults] = useState([]);
   const [query, setQuery] = useState('');
@@ -63,4 +63,4 @@ const Results = () => {
   }
 }
 
-export default Results
+export default Search
