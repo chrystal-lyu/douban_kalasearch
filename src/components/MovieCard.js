@@ -15,6 +15,11 @@ const MovieCard = (props) => {
           boxShadow: '0 0 16px rgba(0, 0, 0, .25)',
         }}>
         <Image
+          sx={{
+            height: 320,
+            width: '100%',
+            objectFit: 'cover'
+          }}
           src={props.cover}
           onError={handleImgError}
         />

@@ -4,9 +4,12 @@ import { Flex, Text, Box, Heading } from 'rebass'
 import { KalaSearch } from 'kalasearch-javascript-sdk'
 import MovieCard from './MovieCard'
 
+const KALA_API_KEY = '5d47ad94-0cd8-4d15-b4a1-283e932e6d1e'
+const KALA_APP_ID = '30bd6466-b03b-4289-baa8-cd745c5b9c33'
+
 const client = new KalaSearch({
-  apiKey: '5d47ad94-0cd8-4d15-b4a1-283e932e6d1e',
-  appId: '30bd6466-b03b-4289-baa8-cd745c5b9c33'
+  apiKey: KALA_API_KEY,
+  appId:  KALA_APP_ID
 })
 
 const indexId = '5a84eb90-ec74-47d2-acb6-8fb6f6fc0878'
@@ -22,7 +25,6 @@ const Search = () => {
     async function f() {
       try {
         let response = await client.search(`${query}`, indexId)
-        console.log(response)
         setResults(response.hits)
         setTime(response.queryTimeUsed)
         setHits(response.totalHits)
@@ -32,20 +34,23 @@ const Search = () => {
     }
     f()
   }, [query]);
-  if (errors || !results) {
+  
+  if (errors) {
     return (
-      <Flex>
-        <Text color={'white'}>Oops, something went wrong.</Text>
+      <Flex sx={{
+        height: '100vh',
+        justifyContent: 'center',
+        alignItems: 'center'}}
+      >
+        <Box color={'white'} >
+          {errors.status} {errors.body.message}
+        </Box>
       </Flex>
     )
   } else {
     return (
       <Box>
-        <Box
-          sx={{
-            textAlign: 'center'
-          }}
-        >
+        <Box sx={{ textAlign: 'center' }} >
           <Heading
             sx={{
               marginTop: 200,
@@ -69,14 +74,16 @@ const Search = () => {
             bg={'white'}
             mx={'auto'}
             value={query}
-            onChange={event => setQuery(event.target.value)}
+            onChange={
+              event => setQuery(event.target.value)
+            }
           />
           <Text
-            sx={{
-              marginBottom: 50
-            }}
+            sx={{ marginBottom: 50 }}
             color={'white'}
-          >{hits} hits in {time}ms</Text>
+          >
+            {hits} hits in {time}ms
+          </Text>
         </Box>
         <Flex flexWrap='wrap' mx={-2}>
           {results.map((movie, index) => {
