@@ -6611,9 +6611,9 @@ jsx-ast-utils@^2.2.1, jsx-ast-utils@^2.2.3:
     object.assign "^4.1.0"
 
 kalasearch-javascript-sdk@^1.0.0:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/kalasearch-javascript-sdk/-/kalasearch-javascript-sdk-1.0.1.tgz#fef8cb102809cba34a91899f1de64b5387ea86a8"
-  integrity sha512-9nmBh4I/eqXijCSgsXAxmBazae/hWlyt1BUcxv/iPOMzAzBeNv8OAQfDzSo/aljaqljau11jkf2Hf2Hw651BYQ==
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/kalasearch-javascript-sdk/-/kalasearch-javascript-sdk-1.0.2.tgz#1629483a4a93f8c160a48af65a11ab52f6203c77"
+  integrity sha512-Nb2ZvFl1euypnBRUKOzNMV+sC74dZEWk+Hp9+iPFXzjnBpS+he807uUqBxi/CvEeMPbs7EiwNWhZPoIWhFkeBA==
   dependencies:
     axios "^0.19.2"
 
