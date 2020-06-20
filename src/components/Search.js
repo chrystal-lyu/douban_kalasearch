@@ -13,13 +13,15 @@ const client = new KalaSearch({
 })
 
 const index = client.getIndex('5a84eb90-ec74-47d2-acb6-8fb6f6fc0878')
+let onComposition = false
 
 const Search = () => {
-  const [errors, setErrors] = useState(false);
-  const [results, setResults] = useState([]);
-  const [query, setQuery] = useState('');
-  const [hits, setHits] = useState([]);
-  const [time, setTime] = useState([]);
+  const [errors, setErrors] = useState(false)
+  const [results, setResults] = useState([])
+  const [query, setQuery] = useState('')
+  const [tempQuery, setTempQuery] = useState('')
+  const [hits, setHits] = useState([])
+  const [time, setTime] = useState([])
 
   useEffect(() => {
     async function f() {
@@ -33,8 +35,23 @@ const Search = () => {
       }
     }
     f()
-  }, [query]);
-  
+  }, [query])
+
+  const handleComposition = (e) => {
+    if (e.type === 'compositionend') {
+      onComposition = false
+      setQuery(e.target.value)
+    } else {
+      onComposition = true
+      setTempQuery(tempQuery)
+    }
+  }
+
+  const handleChange = (e) => {
+    if (!onComposition) setQuery(e.target.value) 
+    setTempQuery(e.target.value)
+  }
+
   if (errors) {
     return (
       <Flex sx={{
@@ -73,10 +90,11 @@ const Search = () => {
             placeholder='Harry Potter'
             bg={'white'}
             mx={'auto'}
-            value={query}
-            onChange={
-              event => setQuery(event.target.value)
-            }
+            value={tempQuery}
+            onChange={(e) => handleChange(e)}
+            onCompositionStart={(e) => handleComposition(e)}
+            onCompositionUpdate={(e) => handleComposition(e)}
+            onCompositionEnd={(e) => handleComposition(e)}
           />
           <Text
             sx={{ marginBottom: 50 }}
