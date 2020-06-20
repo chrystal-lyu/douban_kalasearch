@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Input } from '@rebass/forms'
 import { Flex, Text, Box, Heading } from 'rebass'
-import { KalaSearch } from 'kalasearch-javascript-sdk'
+import KalaSearch from 'kalasearch-javascript-sdk'
 import MovieCard from './MovieCard'
 
 const KALA_API_KEY = '5d47ad94-0cd8-4d15-b4a1-283e932e6d1e'
@@ -12,7 +12,7 @@ const client = new KalaSearch({
   appId:  KALA_APP_ID
 })
 
-const indexId = '5a84eb90-ec74-47d2-acb6-8fb6f6fc0878'
+const index = client.getIndex('5a84eb90-ec74-47d2-acb6-8fb6f6fc0878')
 
 const Search = () => {
   const [errors, setErrors] = useState(false);
@@ -24,7 +24,7 @@ const Search = () => {
   useEffect(() => {
     async function f() {
       try {
-        let response = await client.search(`${query}`, indexId)
+        let response = await index.search(`${query}`)
         setResults(response.hits)
         setTime(response.queryTimeUsed)
         setHits(response.totalHits)
