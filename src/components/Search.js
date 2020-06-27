@@ -1,30 +1,33 @@
 import React, { useState, useEffect } from 'react'
 import { Input } from '@rebass/forms'
 import { Flex, Text, Box, Heading } from 'rebass'
-import { KalaSearch } from 'kalasearch-javascript-sdk'
+import KalaSearch from 'kalasearch-javascript-sdk'
 import MovieCard from './MovieCard'
 
-const KALA_API_KEY = '5d47ad94-0cd8-4d15-b4a1-283e932e6d1e'
-const KALA_APP_ID = '30bd6466-b03b-4289-baa8-cd745c5b9c33'
+const KALA_API_KEY = '19f9453a-8b9d-4af3-8021-d40fcd0f0dc2'
+const KALA_APP_ID = '3bc797e5-9538-4374-a82c-36a4cd9c0071'
 
 const client = new KalaSearch({
   apiKey: KALA_API_KEY,
   appId:  KALA_APP_ID
 })
 
-const indexId = '5a84eb90-ec74-47d2-acb6-8fb6f6fc0878'
+const index = client.getIndex('bc4099ed-32bd-4262-9333-1b05398913fd')
+
+let onComposition = false
 
 const Search = () => {
-  const [errors, setErrors] = useState(false);
-  const [results, setResults] = useState([]);
-  const [query, setQuery] = useState('');
-  const [hits, setHits] = useState([]);
-  const [time, setTime] = useState([]);
+  const [errors, setErrors] = useState(false)
+  const [results, setResults] = useState([])
+  const [query, setQuery] = useState('')
+  const [tempQuery, setTempQuery] = useState('')
+  const [hits, setHits] = useState([])
+  const [time, setTime] = useState([])
 
   useEffect(() => {
     async function f() {
       try {
-        let response = await client.search(`${query}`, indexId)
+        let response = await index.search(`${query}`)
         setResults(response.hits)
         setTime(response.queryTimeUsed)
         setHits(response.totalHits)
@@ -33,8 +36,23 @@ const Search = () => {
       }
     }
     f()
-  }, [query]);
-  
+  }, [query])
+
+  const handleComposition = (e) => {
+    if (e.type === 'compositionend') {
+      onComposition = false
+      setQuery(e.target.value)
+    } else {
+      onComposition = true
+      setTempQuery(tempQuery)
+    }
+  }
+
+  const handleChange = (e) => {
+    if (!onComposition) setQuery(e.target.value) 
+    setTempQuery(e.target.value)
+  }
+
   if (errors) {
     return (
       <Flex sx={{
@@ -73,10 +91,11 @@ const Search = () => {
             placeholder='Harry Potter'
             bg={'white'}
             mx={'auto'}
-            value={query}
-            onChange={
-              event => setQuery(event.target.value)
-            }
+            value={tempQuery}
+            onChange={(e) => handleChange(e)}
+            onCompositionStart={(e) => handleComposition(e)}
+            onCompositionUpdate={(e) => handleComposition(e)}
+            onCompositionEnd={(e) => handleComposition(e)}
           />
           <Text
             sx={{ marginBottom: 50 }}
