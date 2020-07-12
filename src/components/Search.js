@@ -76,7 +76,7 @@ const Search = () => {
         <Box sx={{ textAlign: 'center' }} >
           <Heading
             sx={{
-              marginTop: 200,
+              marginTop: 100,
               marginBottom: 50,
             }}
             mx={'auto'}
@@ -109,7 +109,12 @@ const Search = () => {
             {hits} hits in {time}ms
           </Text>
         </Box>
-        <Flex flexWrap='wrap' mx={-2}>
+        <Box
+          mx={'auto'}
+          sx={{
+            maxWidth: 500
+          }}
+        >
           {results.map((movie, index) => {
             const hasHighlight = (movie.highlights !== undefined) ? true : false
             return (
@@ -122,7 +127,7 @@ const Search = () => {
               />
             )
           })}
-        </Flex>
+        </Box>
       </Box>
       
     )

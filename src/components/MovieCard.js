@@ -6,24 +6,26 @@ const MovieCard = (props) => {
     e.target.src = "https://img3.doubanio.com/f/movie/30c6263b6db26d055cbbe73fe653e29014142ea3/pics/movie/movie_default_large.png"
   }
   return (
-    <Box px={2} py={2} width={[1/2, 1/2, 1/4]}>
+    <Box my={3}>
       <Card
         bg={'white'}
         sx={{
           p: 1,
           borderRadius: 2,
           boxShadow: '0 0 16px rgba(0, 0, 0, .25)',
+          display: 'flex',
+          flexDirection: 'row'
         }}>
         <Image
           sx={{
-            height: 320,
-            width: '100%',
+            height: 130,
+            width: '20%',
             objectFit: 'cover'
           }}
           src={props.cover}
           onError={handleImgError}
         />
-        <Box px={1}>
+        <Box mx={1} px={1} sx={{width: '80%'}}>
           {
             props.hasHighlights
             ? <Text 
