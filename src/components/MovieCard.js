@@ -26,7 +26,15 @@ const MovieCard = (props) => {
         <Box px={1}>
           {
             props.hasHighlights
-            ? <Text fontSize={2} dangerouslySetInnerHTML={{__html: props.name}}></Text>
+            ? <Text 
+                fontSize={2} 
+                dangerouslySetInnerHTML={{__html: props.name}}
+                sx={{
+                  'strong': {
+                    color: 'red'
+                  }
+                }}
+              ></Text>
             : <Text fontSize={2}>{props.name}</Text>
           }
           <Text
