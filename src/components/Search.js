@@ -28,13 +28,12 @@ const Search = () => {
     async function f() {
       try {
         const options = {
-          highlightFields: ["name"]
+          highlightFields: ["name","story"]
         }
         let response = await index.search(
           `${query}`,
           options
         )
-        console.log(response.hits)
         setResults(response.hits)
         setTime(response.queryTimeUsed)
         setHits(response.totalHits)

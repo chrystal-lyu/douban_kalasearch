@@ -49,7 +49,7 @@ const MovieCard = (props) => {
             props.hasHighlightStory
             ? <Text 
                 fontSize={0}
-                my={1}
+                mb={1}
                 dangerouslySetInnerHTML={{__html: props.story}}
                 sx={{
                   color: 'secondary',
@@ -64,7 +64,7 @@ const MovieCard = (props) => {
               ></Text>
             : <Text
                 fontSize={0}
-                my={1}
+                mb={1}
                 sx={{
                   color: 'secondary',
                   overflow: 'hidden',
