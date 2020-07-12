@@ -14,37 +14,67 @@ const MovieCard = (props) => {
           borderRadius: 2,
           boxShadow: '0 0 16px rgba(0, 0, 0, .25)',
           display: 'flex',
-          flexDirection: 'row'
+          flexDirection: 'row',
+          height: 132
         }}>
         <Image
           sx={{
-            height: 130,
+            height: 120,
             width: '20%',
             objectFit: 'cover'
           }}
           src={props.cover}
           onError={handleImgError}
         />
-        <Box mx={1} px={1} sx={{width: '80%'}}>
+        <Box
+          px={2}
+          sx={{width: '80%'}}
+        >
           {
-            props.hasHighlights
-            ? <Text 
+            props.hasHighlightName
+            ? <Text
                 fontSize={2} 
                 dangerouslySetInnerHTML={{__html: props.name}}
                 sx={{
+                  fontWeight: 'bold',
                   'strong': {
                     color: 'red'
                   }
                 }}
               ></Text>
-            : <Text fontSize={2}>{props.name}</Text>
+            : <Text fontSize={2} sx={{fontWeight: 'bold'}}>{props.name}</Text>
           }
-          <Text
-            fontSize={0}
-            my={1}
-          >
-            {props.actors}
-          </Text>
+
+          {
+            props.hasHighlightStory
+            ? <Text 
+                fontSize={1}
+                my={1}
+                dangerouslySetInnerHTML={{__html: props.story}}
+                sx={{
+                  color: 'secondary',
+                  overflow: 'hidden',
+                  display: '-webkit-box',
+                  '-webkit-line-clamp': '4',
+                  '-webkit-box-orient': 'vertical',
+                  'strong': {
+                    color: 'red'
+                  }
+                }}
+              ></Text>
+            : <Text
+                fontSize={1}
+                my={1}
+                sx={{
+                  color: 'secondary',
+                  overflow: 'hidden',
+                  display: '-webkit-box',
+                  '-webkit-line-clamp': '4',
+                  '-webkit-box-orient': 'vertical'
+                }}
+              >{props.story}</Text>
+          }
+
         </Box>
       </Card>
     </Box>
