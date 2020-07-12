@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Card, Image, Heading, Text } from 'rebass'
+import { Box, Card, Image, Text } from 'rebass'
 
 const MovieCard = (props) => {
   const handleImgError = (e) => {
@@ -24,7 +24,11 @@ const MovieCard = (props) => {
           onError={handleImgError}
         />
         <Box px={1}>
-          <Heading fontSize={2}>{props.name}</Heading>
+          {
+            props.hasHighlights
+            ? <Text fontSize={2} dangerouslySetInnerHTML={{__html: props.name}}></Text>
+            : <Text fontSize={2}>{props.name}</Text>
+          }
           <Text
             fontSize={0}
             my={1}
