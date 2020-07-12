@@ -4,15 +4,15 @@ import { Flex, Text, Box, Heading } from 'rebass'
 import KalaSearch from 'kalasearch-javascript-sdk'
 import MovieCard from './MovieCard'
 
-const KALA_API_KEY = '19f9453a-8b9d-4af3-8021-d40fcd0f0dc2'
-const KALA_APP_ID = '3bc797e5-9538-4374-a82c-36a4cd9c0071'
+const KALA_API_KEY = '356c5f8d-c05d-4783-9917-a7e309d8a216'
+const KALA_APP_ID = 'a7da6423-d048-4900-8ccc-4bd8bb91d0be'
 
 const client = new KalaSearch({
   apiKey: KALA_API_KEY,
   appId:  KALA_APP_ID
 })
 
-const index = client.getIndex('bc4099ed-32bd-4262-9333-1b05398913fd')
+const index = client.getIndex('a422cd23-b37e-4263-8992-766c1f2885ce')
 
 let onComposition = false
 
@@ -27,7 +27,12 @@ const Search = () => {
   useEffect(() => {
     async function f() {
       try {
-        let response = await index.search(`${query}`)
+        let response = await index.search(
+          `${query}`,
+          5,
+          ["name"],
+          ["name"]
+        )
         setResults(response.hits)
         setTime(response.queryTimeUsed)
         setHits(response.totalHits)
@@ -88,7 +93,7 @@ const Search = () => {
             id='search'
             name='search'
             type='text'
-            placeholder='Harry Potter'
+            placeholder='搜索'
             bg={'white'}
             mx={'auto'}
             value={tempQuery}
@@ -106,12 +111,14 @@ const Search = () => {
         </Box>
         <Flex flexWrap='wrap' mx={-2}>
           {results.map((movie, index) => {
+            const hasHighlight = (movie.highlights !== undefined) ? true : false
             return (
               <MovieCard
                 key={index}
-                name={movie._source.NAME}
-                cover={movie._source.COVER}
-                actors={movie._source.ACTORS}
+                name={hasHighlight ? movie.highlights.name.value : movie.source.name}
+                cover={movie.source.image}
+                actors={movie.source.actors}
+                hasHighlights={hasHighlight}
               />
             )
           })}

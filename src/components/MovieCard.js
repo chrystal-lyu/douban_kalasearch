@@ -24,7 +24,11 @@ const MovieCard = (props) => {
           onError={handleImgError}
         />
         <Box px={1}>
-          <Heading fontSize={2}>{props.name}</Heading>
+          {
+            props.hasHighlights
+            ? <Text fontSize={2} dangerouslySetInnerHTML={{__html: props.name}}></Text>
+            : <Text fontSize={2}>{props.name}</Text>
+          }
           <Text
             fontSize={0}
             my={1}
