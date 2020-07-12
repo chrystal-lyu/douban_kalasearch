@@ -27,11 +27,12 @@ const Search = () => {
   useEffect(() => {
     async function f() {
       try {
+        const options = {
+          highlightFields: ["name","story"]
+        }
         let response = await index.search(
           `${query}`,
-          5,
-          ["name"],
-          ["name"]
+          options
         )
         setResults(response.hits)
         setTime(response.queryTimeUsed)
@@ -76,18 +77,18 @@ const Search = () => {
         <Box sx={{ textAlign: 'center' }} >
           <Heading
             sx={{
-              marginTop: 200,
+              marginTop: [30, 30, 100],
               marginBottom: 50,
             }}
             mx={'auto'}
             color={'white'}
           >
-            You Search. We Deliver.
+            卡拉搜索
           </Heading>
           <Input
             sx={{
               outline: 'none',
-              marginBottom: 50,
+              marginBottom: 20,
               maxWidth: 500
             }}
             id='search'
@@ -103,26 +104,34 @@ const Search = () => {
             onCompositionEnd={(e) => handleComposition(e)}
           />
           <Text
-            sx={{ marginBottom: 50 }}
+            sx={{ marginBottom: 20 }}
             color={'white'}
           >
-            {hits} hits in {time}ms
+            {hits} 个搜索结果 ｜ 用时 {time} 毫秒 ⚡️
           </Text>
         </Box>
-        <Flex flexWrap='wrap' mx={-2}>
+        <Box
+          mx={'auto'}
+          sx={{
+            maxWidth: 500
+          }}
+        >
           {results.map((movie, index) => {
-            const hasHighlight = (movie.highlights !== undefined) ? true : false
+            const hasHighlightName = (movie.highlights !== undefined && movie.highlights.name) ? true : false
+            const hasHighlightStory = (movie.highlights !== undefined && movie.highlights.story) ? true : false
             return (
               <MovieCard
                 key={index}
-                name={hasHighlight ? movie.highlights.name.value : movie.source.name}
+                name={hasHighlightName ? movie.highlights.name.value : movie.source.name}
                 cover={movie.source.image}
                 actors={movie.source.actors}
-                hasHighlights={hasHighlight}
+                story={hasHighlightStory ? movie.highlights.story.value : movie.source.story}
+                hasHighlightName={hasHighlightName}
+                hasHighlightStory={hasHighlightStory}
               />
             )
           })}
-        </Flex>
+        </Box>
       </Box>
       
     )

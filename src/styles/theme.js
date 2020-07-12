@@ -11,7 +11,9 @@ export const theme = {
     primary: '#ea4c89',
     gray: '#f6f6ff',
     dark: '#171F23',
-    white: '#FFFFFF'
+    white: '#FFFFFF',
+    red: '#ff5c5c',
+    secondary: '#999999'
   },
   buttons: {
     primary: {
