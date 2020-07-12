@@ -48,14 +48,14 @@ const MovieCard = (props) => {
           {
             props.hasHighlightStory
             ? <Text 
-                fontSize={1}
+                fontSize={0}
                 my={1}
                 dangerouslySetInnerHTML={{__html: props.story}}
                 sx={{
                   color: 'secondary',
                   overflow: 'hidden',
                   display: '-webkit-box',
-                  WebkitLineClamp: '4',
+                  WebkitLineClamp: '5',
                   WebkitBoxOrient: 'vertical',
                   'strong': {
                     color: 'red'
@@ -63,13 +63,13 @@ const MovieCard = (props) => {
                 }}
               ></Text>
             : <Text
-                fontSize={1}
+                fontSize={0}
                 my={1}
                 sx={{
                   color: 'secondary',
                   overflow: 'hidden',
                   display: '-webkit-box',
-                  WebkitLineClamp: '4',
+                  WebkitLineClamp: '5',
                   WebkitBoxOrient: 'vertical'
                 }}
               >{props.story}</Text>

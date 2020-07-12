@@ -27,12 +27,14 @@ const Search = () => {
   useEffect(() => {
     async function f() {
       try {
+        const options = {
+          highlightFields: ["name"]
+        }
         let response = await index.search(
           `${query}`,
-          10,
-          ["name", "story"],
-          ["name", "story"]
+          options
         )
+        console.log(response.hits)
         setResults(response.hits)
         setTime(response.queryTimeUsed)
         setHits(response.totalHits)
@@ -76,7 +78,7 @@ const Search = () => {
         <Box sx={{ textAlign: 'center' }} >
           <Heading
             sx={{
-              marginTop: 100,
+              marginTop: [30, 30, 100],
               marginBottom: 50,
             }}
             mx={'auto'}
