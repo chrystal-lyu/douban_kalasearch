@@ -55,8 +55,8 @@ const MovieCard = (props) => {
                   color: 'secondary',
                   overflow: 'hidden',
                   display: '-webkit-box',
-                  '-webkit-line-clamp': '4',
-                  '-webkit-box-orient': 'vertical',
+                  WebkitLineClamp: '4',
+                  WebkitBoxOrient: 'vertical',
                   'strong': {
                     color: 'red'
                   }
@@ -69,8 +69,8 @@ const MovieCard = (props) => {
                   color: 'secondary',
                   overflow: 'hidden',
                   display: '-webkit-box',
-                  '-webkit-line-clamp': '4',
-                  '-webkit-box-orient': 'vertical'
+                  WebkitLineClamp: '4',
+                  WebkitBoxOrient: 'vertical'
                 }}
               >{props.story}</Text>
           }
