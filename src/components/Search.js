@@ -94,7 +94,7 @@ const Search = () => {
             id='search'
             name='search'
             type='text'
-            placeholder='搜索'
+            placeholder='尝试搜索 无间道 或 大白鲨'
             bg={'white'}
             mx={'auto'}
             value={tempQuery}
