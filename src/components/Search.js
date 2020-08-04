@@ -4,15 +4,15 @@ import { Flex, Text, Box, Heading } from 'rebass'
 import KalaSearch from 'kalasearch-javascript-sdk'
 import MovieCard from './MovieCard'
 
-const KALA_API_KEY = '356c5f8d-c05d-4783-9917-a7e309d8a216'
-const KALA_APP_ID = 'a7da6423-d048-4900-8ccc-4bd8bb91d0be'
+const KALA_APP_ID = '114a68ad-f8cb-485c-9ca3-e8f8692f597f'
+const KALA_API_KEY = '44e763bc-0c61-4716-a5c7-0a77c3a96b47'
 
 const client = new KalaSearch({
-  apiKey: KALA_API_KEY,
-  appId:  KALA_APP_ID
+  appId:  KALA_APP_ID,
+  apiKey: KALA_API_KEY
 })
 
-const index = client.getIndex('a422cd23-b37e-4263-8992-766c1f2885ce')
+const index = client.getIndex('42303413-ac7d-4b71-abac-581e11c0d6d1')
 
 let onComposition = false
 
