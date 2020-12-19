@@ -19,7 +19,7 @@ jobs:
     - name: Build Kalasearch Douban Demo Site
       run: |
         yarn install
-        yarn build
+        yarn start
     - uses: manyuanrong/setup-ossutil@v2.0
       with:
         endpoint: "oss-cn-beijing.aliyuncs.com"
