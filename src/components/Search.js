@@ -122,10 +122,10 @@ const Search = () => {
             return (
               <MovieCard
                 key={index}
-                name={hasHighlightName ? movie.highlights.name.value : movie.source.name}
+                name={hasHighlightName ? movie.highlights.name.snippet : movie.source.name}
                 cover={movie.source.image}
                 actors={movie.source.actors}
-                story={hasHighlightStory ? movie.highlights.story.value : movie.source.story}
+                story={hasHighlightStory ? movie.highlights.story.snippet : movie.source.story}
                 hasHighlightName={hasHighlightName}
                 hasHighlightStory={hasHighlightStory}
               />
@@ -133,7 +133,6 @@ const Search = () => {
           })}
         </Box>
       </Box>
-      
     )
   }
 }
