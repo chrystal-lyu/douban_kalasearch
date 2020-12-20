@@ -19,11 +19,11 @@ jobs:
     - name: Build Kalasearch Douban Demo Site
       run: |
         yarn install
-        yarn start
+        yarn build
     - uses: manyuanrong/setup-ossutil@v2.0
       with:
         endpoint: "oss-cn-beijing.aliyuncs.com"
         access-key-id: ${{ secrets.ACCESS_KEY_ID }}
         access-key-secret: ${{ secrets.ACCESS_KEY_SECRET }}
     - name: Deply To OSS
-      run: ossutil cp public oss://kalasearch-douban-movies-demo/ -rf
+      run: ossutil cp build oss://kalasearch-douban-movies-demo/ -rf
